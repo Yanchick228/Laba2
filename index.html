@@ -4,7 +4,7 @@
 <script>
 
 function isNumber(a){
-if (typeof Number(a) != 'number' || a%1 != 0)
+if (typeof Number(a) != 'number' || a%1 != 0 || (a == '' || a.indexOf(' ') >= 0))
 return true;
 else
 return false;
@@ -26,7 +26,10 @@ if (arr[key] == 0)
 result.push(key);
 }
 
-document.getElementsByTagName('p')[0].innerHTML = `Результат: ${result.join(', ')}`;
+if (result[0] == undefined)
+document.getElementsByTagName('p')[0].innerHTML = `Элементы равные нулю отсутствуют!`;
+else
+document.getElementsByTagName('p')[0].innerHTML = `Элементы равные нулю имеют следующие индексы: ${result.join(', ')}`;
 return;
 }
 
@@ -34,7 +37,7 @@ return;
 </head>
 <body style="display: flex; justify-content: center; align-items: center;">
 <div style="border-radius: 10px; box-shadow: 0px 0px 10px 0px; width: 300px; height: 300px; background-color: lightgray; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly;">
-<label style="text-align: center;">Введите последовательность целых чисел через запятую:</label>
+<label style="text-align: center;">Введите последовательность целых чисел через запятую без пробелов:</label>
 <input type="text" id="txtpole">
 <input type="button" value="Старт" onclick="main()">
 <p style="text-align: center;"></p>
